@@ -1,0 +1,42 @@
+---
+title: "p8105_hw4_cgd2137"
+author: "Carolina Downie"
+date: "10/26/2017"
+output: html_document
+---
+
+#Loading packages
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
+
+#Problem 2
+```{r clean pols data}
+
+#Note: The way this is tidied is based on the answer key for HW2
+
+pols <- read_csv("fivethirtyeight_datasets/pols-month.csv") %>%
+  mutate(date = lubridate::floor_date(mon, "month"), 
+         president = recode(prez_gop, `0` = "dem", `1` = "gop", `2` = "gop")) %>%
+  separate(mon, into = c("year", "month", "day"), convert = TRUE) %>%
+  mutate(month = month.name[month]) %>%
+  select(year, month, date, president, gov_gop, sen_gop, rep_gop, gov_dem, sen_dem, rep_dem)
+
+```
+
+```{r clean GDP data}
+GDP <- read_csv("fivethirtyeight_datasets/GDP.csv", col_names = TRUE) %>% 
+  rename(date = DATE, GDP_value = VALUE) %>% filter(GDP_value != ".")
+
+```
+
+```{r joining pols and GDP data}
+
+#Only joining where there is data for both pols and GDP
+pols_GDP <- inner_join(pols, GDP, by = "date")
+
+
+```
+
