@@ -5,26 +5,32 @@ date: "10/26/2017"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+#Loading packages
+```{r}
+library(tidyverse)
+library(ggplot2)
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+#Problem 2
+ 
+```{r pols data}
+pols_month <- read_csv("fivethirtyeight_datasets/pols-month.csv", col_names=TRUE) %>%
+mutate(president = if_else(prez_dem == "1", "dem", "rep")) %>%
+separate(mon, into = c("year", "month", "day"), sep = "-") %>%
+mutate(month=as.integer(month)) %>%
+mutate(month = month.name[month]) %>%
+mutate(month = as.character(month)) %>%
+select(-c(prez_dem, prez_gop, day)) %>% 
+gather(key="governors", value="num_governors", gov_gop, gov_dem) %>% 
+gather(key="senators", value="num_senators", sen_gop, sen_dem) %>% 
+gather(key="representatives", value="num_representatives", rep_gop, rep_dem)%>%
+separate(governors, into= c("remove1", "governors"), sep ="_") %>%
+separate(senators, into= c("remove2", "senators"), sep= "_") %>%
+separate(representatives, into = c("remove3", "representatives"), sep = "_") %>%
+select(-c( remove1, remove2, remove3))
 
-```{r cars}
-summary(cars)
+
+
 ```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
