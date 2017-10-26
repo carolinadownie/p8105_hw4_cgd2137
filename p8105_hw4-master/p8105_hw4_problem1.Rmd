@@ -17,3 +17,11 @@ pups <- read_csv("./Data/FAS_pups.csv") %>%
   clean_names()
 ```
 
+
+
+Creating plot showing the distribution of post-natal days for each developmental landmark: 
+```{r}
+
+
+```
+
