@@ -37,6 +37,16 @@ GDP <- read_csv("./Data/GDP.csv", col_names = TRUE) %>%
 #Only joining where there is data for both pols and GDP
 pols_GDP <- inner_join(pols, GDP, by = "date")
 
+```
 
+The following chunk creates a plot of GDP value over time, with colored dots representing the party of the president at a given time. The plot also inlcudes a smooth line tracking the mean GPD value over the course of the dates in the data.
+
+```{r gdp_over_time}
+pols_GDP %>% 
+  mutate(GDP_value = as.numeric(GDP_value)) %>% 
+  ggplot(aes(x = date, y = GDP_value)) +
+  geom_point(aes(color = president)) +
+  geom_smooth(se = FALSE) +
+  theme_bw()
 ```
 
