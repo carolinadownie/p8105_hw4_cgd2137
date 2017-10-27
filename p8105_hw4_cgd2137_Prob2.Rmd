@@ -17,7 +17,7 @@ library(ggplot2)
 
 #Note: The way this is tidied is based on the answer key for HW2
 
-pols <- read_csv("fivethirtyeight_datasets/pols-month.csv") %>%
+pols <- read_csv("./Data/pols-month.csv") %>%
   mutate(date = lubridate::floor_date(mon, "month"), 
          president = recode(prez_gop, `0` = "dem", `1` = "gop", `2` = "gop")) %>%
   separate(mon, into = c("year", "month", "day"), convert = TRUE) %>%
@@ -27,7 +27,7 @@ pols <- read_csv("fivethirtyeight_datasets/pols-month.csv") %>%
 ```
 
 ```{r clean GDP data}
-GDP <- read_csv("fivethirtyeight_datasets/GDP.csv", col_names = TRUE) %>% 
+GDP <- read_csv("./Data/GDP.csv", col_names = TRUE) %>% 
   rename(date = DATE, GDP_value = VALUE) %>% filter(GDP_value != ".")
 
 ```
