@@ -133,6 +133,8 @@ $(document).ready(function () {
 ## Loading tidyverse: readr
 ## Loading tidyverse: purrr
 ## Loading tidyverse: dplyr</code></pre>
+<pre><code>## Warning: package 'tidyr' was built under R version 3.4.2</code></pre>
+<pre><code>## Warning: package 'purrr' was built under R version 3.4.2</code></pre>
 <pre><code>## Warning: package 'dplyr' was built under R version 3.4.2</code></pre>
 <pre><code>## Conflicts with tidy packages ----------------------------------------------</code></pre>
 <pre><code>## filter(): dplyr, stats
@@ -141,6 +143,7 @@ $(document).ready(function () {
 </div>
 <div id="problem-2" class="section level1">
 <h1>Problem 2</h1>
+<p>This code chunk loads and cleans the pols dataset.</p>
 <pre class="r"><code>#Note: The way this is tidied is based on the answer key for HW2
 
 pols &lt;- read_csv(&quot;./Data/pols-month.csv&quot;) %&gt;%
@@ -161,6 +164,7 @@ pols &lt;- read_csv(&quot;./Data/pols-month.csv&quot;) %&gt;%
 ##   sen_dem = col_integer(),
 ##   rep_dem = col_integer()
 ## )</code></pre>
+<p>This code chunk loads and cleans the GDP dataset.</p>
 <pre class="r"><code>GDP &lt;- read_csv(&quot;./Data/GDP.csv&quot;, col_names = TRUE) %&gt;% 
   rename(date = DATE, GDP_value = VALUE) %&gt;% filter(GDP_value != &quot;.&quot;)</code></pre>
 <pre><code>## Parsed with column specification:
@@ -168,6 +172,7 @@ pols &lt;- read_csv(&quot;./Data/pols-month.csv&quot;) %&gt;%
 ##   DATE = col_date(format = &quot;&quot;),
 ##   VALUE = col_character()
 ## )</code></pre>
+<p>This code chunk joins the pols and GDP datasets.</p>
 <pre class="r"><code>#Only joining where there is data for both pols and GDP
 pols_GDP &lt;- inner_join(pols, GDP, by = &quot;date&quot;)</code></pre>
 <p>The following chunk creates a plot of GDP value over time, with colored dots representing the party of the president at a given time. The plot also inlcudes a smooth line tracking the mean GPD value over the course of the dates in the data.</p>

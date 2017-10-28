@@ -13,6 +13,7 @@ library(ggplot2)
 
 
 #Problem 2
+This code chunk loads and cleans the pols dataset. 
 ```{r clean pols data}
 
 #Note: The way this is tidied is based on the answer key for HW2
@@ -26,12 +27,15 @@ pols <- read_csv("./Data/pols-month.csv") %>%
 
 ```
 
+This code chunk loads and cleans the GDP dataset. 
+
 ```{r clean GDP data}
 GDP <- read_csv("./Data/GDP.csv", col_names = TRUE) %>% 
   rename(date = DATE, GDP_value = VALUE) %>% filter(GDP_value != ".")
 
 ```
 
+This code chunk joins the pols and GDP datasets. 
 ```{r joining pols and GDP data}
 
 #Only joining where there is data for both pols and GDP
