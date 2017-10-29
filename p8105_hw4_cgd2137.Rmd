@@ -1,0 +1,22 @@
+---
+title: "p8105_HW4_cgd2137"
+author: "Carolina Downie"
+date: "10/29/2017"
+output: html_document
+---
+In Problems 1 and 2, I worked with Nick Pantaleo (UNI: np2582).
+
+### Problem 1
+
+The GitHub repo containing our solution to this problem is [here](https://github.com/npantaleo/p8105_hw4).
+
+
+### Problem 2
+
+The GitHub repo containing the solution to this problem is [here](https://github.com/carolinadownie/p8105_hw4_cgd2137).
+
+
+### Problem 3
+
+My personal website is [here](https://carolinadownie.github.io/).
+
